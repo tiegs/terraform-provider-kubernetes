@@ -118,9 +118,7 @@ func (ps *RawProviderServer) TFTypeFromOpenAPI(ctx context.Context, gvk schema.G
 		ot := tsch.(tftypes.Object)
 		atts := make(map[string]tftypes.Type)
 		for k, t := range ot.AttributeTypes {
-			if k != "status" {
-				atts[k] = t
-			}
+      atts[k] = t
 		}
 		// types from CRDs only contain specific attributes
 		// we need to backfill metadata and apiVersion/kind attributes
@@ -179,7 +177,7 @@ func sliceRemoveNulls(in []interface{}) []interface{} {
 // resource after creation which would cause a perpetual diff
 func RemoveServerSideFields(in map[string]interface{}) map[string]interface{} {
 	// Remove "status" attribute
-	delete(in, "status")
+	//delete(in, "status")
 
 	meta := in["metadata"].(map[string]interface{})
 

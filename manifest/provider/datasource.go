@@ -148,7 +148,8 @@ func (s *RawProviderServer) ReadDataSource(ctx context.Context, req *tfprotov5.R
 		return resp, nil
 	}
 
-	fo := RemoveServerSideFields(res.Object)
+	//fo := RemoveServerSideFields(res.Object)
+	fo := res.Object
 	nobj, err := payload.ToTFValue(fo, objectType, th, tftypes.NewAttributePath())
 	if err != nil {
 		resp.Diagnostics = append(resp.Diagnostics, &tfprotov5.Diagnostic{
